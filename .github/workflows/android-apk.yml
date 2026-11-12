@@ -1,20 +1,14 @@
 
-name: AMU Android APK Build
+name: Build AMU Android APK
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-    paths:
-      - '.github/workflows/android-apk.yml'
-
-permissions:
-  contents: read
 
 jobs:
   build:
-    name: Build AMU Android APK
     runs-on: ubuntu-latest
 
     steps:
@@ -38,8 +32,11 @@ jobs:
         with:
           gradle-version: '8.9'
 
+      - name: Enable AndroidX
+        run: |
+          echo "android.useAndroidX=true" > gradle.properties
+
       - name: Create Android project
-        shell: bash
         run: |
           mkdir -p app/src/main/java/com/amu/hostel
           mkdir -p app/src/main/res/values
@@ -95,21 +92,17 @@ jobs:
           cat > app/src/main/AndroidManifest.xml <<'EOF'
           <manifest xmlns:android="http://schemas.android.com/apk/res/android">
               <uses-permission android:name="android.permission.INTERNET" />
-
               <application
-                  android:label="AMU Management"
                   android:theme="@android:style/Theme.Material.Light.NoActionBar"
+                  android:label="AMU"
                   android:usesCleartextTraffic="false">
-
                   <activity
                       android:name=".MainActivity"
                       android:exported="true">
-
                       <intent-filter>
                           <action android:name="android.intent.action.MAIN" />
                           <category android:name="android.intent.category.LAUNCHER" />
                       </intent-filter>
-
                   </activity>
               </application>
           </manifest>
@@ -121,14 +114,11 @@ jobs:
           import android.os.Bundle;
           import android.webkit.WebView;
           import android.webkit.WebViewClient;
-          import android.webkit.WebChromeClient;
           import android.webkit.WebSettings;
-
           import androidx.activity.ComponentActivity;
           import androidx.activity.OnBackPressedCallback;
 
           public class MainActivity extends ComponentActivity {
-
               private WebView webView;
 
               @Override
@@ -136,24 +126,17 @@ jobs:
                   super.onCreate(savedInstanceState);
 
                   webView = new WebView(this);
-                  setContentView(webView);
-
                   WebSettings settings = webView.getSettings();
                   settings.setJavaScriptEnabled(true);
                   settings.setDomStorageEnabled(true);
                   settings.setDatabaseEnabled(true);
-                  settings.setLoadWithOverviewMode(true);
-                  settings.setUseWideViewPort(true);
 
                   webView.setWebViewClient(new WebViewClient());
-                  webView.setWebChromeClient(new WebChromeClient());
+                  webView.loadUrl("https://hostel2943-tech.github.io/AMU-Android-/");
 
-                  webView.loadUrl(
-                      "https://hostel2943-tech.github.io/AMU-Android-/"
-                  );
+                  setContentView(webView);
 
-                  getOnBackPressedDispatcher().addCallback(
-                      this,
+                  getOnBackPressedDispatcher().addCallback(this,
                       new OnBackPressedCallback(true) {
                           @Override
                           public void handleOnBackPressed() {
@@ -164,8 +147,7 @@ jobs:
                                   getOnBackPressedDispatcher().onBackPressed();
                               }
                           }
-                      }
-                  );
+                      });
               }
 
               @Override
@@ -179,19 +161,13 @@ jobs:
           }
           EOF
 
-      - name: Build Android APK
+      - name: Build APK
         run: gradle assembleDebug
 
-      - name: Verify APK
-        run: |
-          test -f app/build/outputs/apk/debug/app-debug.apk
-          ls -lh app/build/outputs/apk/debug/app-debug.apk
-
-      - name: Upload APK artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: AMU-Android-APK
           path: app/build/outputs/apk/debug/app-debug.apk
-          if-no-files-found: error
           retention-days: 30
           

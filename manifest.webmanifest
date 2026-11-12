@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "AMU Management",
+  "short_name": "AMU",
+  "description": "Secure hostel fund, student and event management",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f3f6fa",
+  "theme_color": "#10243a",
+  "icons": [
+    {
+      "src": "amu-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "amu-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

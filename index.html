@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#10243a"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="application-name" content="AMU Management"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="amu-icon.svg" type="image/svg+xml">
-<title>AMU Management — Android</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#10243a"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="application-name" content="MSPS MANAGEMENT"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="amu-icon.svg" type="image/svg+xml">
+<title>MSPS MANAGEMENT</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--navy:#10243a;--blue:#1769aa;--bg:#f3f6fa;--card:#fff;--line:#dce3eb;--muted:#667085;--green:#067647;--red:#b42318}
@@ -107,14 +107,14 @@ input,select,textarea{font-size:16px;min-height:44px}
  .tile small,.small-grid .tile small{display:block}
 }
 #printRoot{display:none}
-@media print{body>*:not(#printRoot){display:none!important}#printRoot{display:block!important;padding:16px;color:#111;font-family:Arial,sans-serif}#printRoot h1{text-align:center;font-size:19px}#printRoot .print-meta{font-size:11px;margin:8px 0 14px}#printRoot table{width:100%;border-collapse:collapse;min-width:0;font-size:10px}#printRoot th,#printRoot td{border:1px solid #888;padding:6px;text-align:left}#printRoot th{background:#eee!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.no-print{display:none!important}}
+@media print{@page{size:auto;margin:12mm}html,body{height:auto!important;overflow:visible!important;background:#fff!important}body>*:not(#printRoot){display:none!important}#printRoot{display:block!important;position:static!important;width:100%!important;padding:0!important;margin:0!important;color:#111!important;background:#fff!important;font-family:Arial,sans-serif}#printRoot h1{text-align:center;font-size:19px;margin:0 0 8px}#printRoot .print-meta{font-size:11px;margin:8px 0 14px}#printRoot .table-wrap{overflow:visible!important}#printRoot table{width:100%!important;border-collapse:collapse;min-width:0!important;font-size:10px;table-layout:auto}#printRoot th,#printRoot td{border:1px solid #888;padding:6px;text-align:left;color:#111!important;white-space:normal!important;overflow-wrap:anywhere}#printRoot th{background:#eee!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.no-print{display:none!important}#printRoot tr{break-inside:avoid;page-break-inside:avoid}}
 
 </style>
 </head>
 <body>
 <section id="loginScreen">
  <div class="login-card">
-  <div class="logo">A</div><h1>AMU Management</h1><p>Secure warden sign in</p>
+  <div class="logo">M</div><h1>MSPS MANAGEMENT</h1><p>Secure warden sign in</p>
   <form id="loginForm">
    <div class="field"><label>Warden email</label><input id="email" type="email" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Email address"></div>
    <div class="field"><label>Password</label><input id="password" type="password" required autocomplete="current-password" placeholder="Password"></div>
@@ -123,7 +123,7 @@ input,select,textarea{font-size:16px;min-height:44px}
  </div>
 </section>
 <div id="app" class="hidden">
-<header><div><div class="brand">AMU MANAGEMENT</div><div class="subbrand">WARDEN CONTROL PANEL</div></div><div class="header-right"><div id="who" class="who"></div><button class="logout" id="logout">Sign out</button></div></header>
+<header><div><div class="brand">MSPS MANAGEMENT</div><div class="subbrand">WARDEN CONTROL PANEL</div></div><div class="header-right"><div id="who" class="who"></div><button class="logout" id="logout">Sign out</button></div></header>
 <main>
  <div class="welcome"><div><h1>Dashboard</h1><p>Manage students, events and hostel funds.</p></div><button class="btn secondary" id="refresh">↻ Refresh</button></div>
  <div class="section-title">Main dashboard</div>
@@ -139,7 +139,7 @@ input,select,textarea{font-size:16px;min-height:44px}
   <button class="tile" data-panel="contribution"><div class="ico">◎</div><strong>Event Contribution</strong><small>Registered and manual contributions</small></button>
   <button class="tile" data-panel="events"><div class="ico">▤</div><strong>Event Management</strong><small>Reports and handovers</small></button>
   <button class="tile" data-panel="email"><div class="ico">✉</div><strong>Email</strong><small>Daily report data for email workflow</small></button>
-  <button class="tile" data-panel="backup"><div class="ico">▣</div><strong>Backup</strong><small>Export current AMU data</small></button>
+  <button class="tile" data-panel="backup"><div class="ico">▣</div><strong>Backup</strong><small>Export current MSPS data</small></button>
   <button class="tile" data-panel="transfer"><div class="ico">⇄</div><strong>Student Transfer</strong><small>Student-to-student fund transfer</small></button>
   <button class="tile" data-panel="borrowing"><div class="ico">↗</div><strong>Borrow</strong><small>Borrowing history</small></button>
   <button class="tile" data-panel="warden"><div class="ico">▥</div><strong>Warden Utilization & Repayment</strong><small>Record utilization and repayment</small></button>
@@ -193,16 +193,16 @@ function downloadCurrentBalances(){
  const rows=balanceRows();
  const lines=[["Student","Student ID","Class","Current Balance (INR)"],...rows.map(r=>[r.name,r.student_code,r.class,Number(r.current_balance||0).toFixed(2)])];
  const csv="\uFEFF"+lines.map(row=>row.map(csvField).join(",")).join("\r\n");
- downloadTextFile("AMU_Current_Balances_"+today()+".csv",csv,"text/csv");
+ downloadTextFile("MSPS_Current_Balances_"+today()+".csv",csv,"text/csv");
  msg($("panelMsg"),"Current balances CSV download started. Check your Downloads folder.","ok");
 }
 
 function printReport(title,content){
  let root=$("printRoot");if(!root){root=document.createElement("section");root.id="printRoot";document.body.appendChild(root)}
- root.innerHTML=`<h1>${esc(title)}</h1><div class="print-meta">AMU Management · Generated ${new Date().toLocaleString("en-IN",{timeZone:"Asia/Kolkata"})} (IST)</div>${content}`;
- const cleanup=()=>{root.innerHTML=""};
- window.addEventListener("afterprint",cleanup,{once:true});
- setTimeout(()=>{try{window.print()}catch(e){msg($("panelMsg"),"Printing is not available in this browser. Open AMU in Chrome and try again.","err")}},120);
+ root.innerHTML=`<h1>${esc(title)}</h1><div class="print-meta">MSPS MANAGEMENT · Generated ${new Date().toLocaleString("en-IN",{timeZone:"Asia/Kolkata"})} (IST)</div>${content}`;
+ // Keep the prepared report in the DOM until the next print. Android's native
+ // PrintManager captures the WebView asynchronously after this call.
+ setTimeout(()=>{try{if(window.AMUAndroidPrint&&typeof window.AMUAndroidPrint.print==="function"){window.AMUAndroidPrint.print()}else{window.print()}}catch(e){msg($("panelMsg"),"Printing is not available here. Open the website in Chrome and choose Print.","err")}},180);
 }
 function printCurrentReport(title,elementId){const el=$(elementId);if(!el){msg($("panelMsg"),"There is no report to print yet.","err");return}printReport(title,el.innerHTML)}
 
@@ -228,7 +228,23 @@ async function openPanel(key){
  try{
   if(!students.length||!events.length)await loadBase();
   if(key==="students")return studentsPanel();
-  if(key==="fund"){const d=await reports({action:"dashboard"});const f=d.total_fund||{},o=d.warden_outstanding||{};let historyHtml="<div class=notice>All-time history could not be loaded from the reports service.</div>";try{const b=await reports({action:"backup_export"});const tx=b.student_transactions||[],ev=b.event_contributions||[],wh=b.event_handovers||[],wt=b.warden_transactions||[];const all=[...tx.map(x=>({...x,history_type:x.transaction_type||"Student transaction",person:x.student?.name||x.student_id||"Student"})),...ev.map(x=>({...x,history_type:"Event contribution",person:x.student?.name||x.contributor_name||"Contributor"})),...wh.map(x=>({...x,history_type:"Event handover",person:x.recipient_name||"Recipient"})),...wt.map(x=>({...x,history_type:x.transaction_type||"Warden transaction",person:"Warden"}))].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));historyHtml=all.length?`<h3 style="margin-top:20px">Complete history till date</h3><div class="table-wrap"><table><thead><tr><th>Date/time</th><th>Type</th><th>Name</th><th>Amount</th><th>Reference</th></tr></thead><tbody>${all.map(x=>`<tr><td>${x.created_at?new Date(x.created_at).toLocaleString("en-IN"):"—"}</td><td>${esc(x.history_type)}</td><td>${esc(x.person)}</td><td>${money(x.amount)}</td><td>${esc(x.id||"—")}</td></tr>`).join("")}</tbody></table></div>`:"<div class=empty>No historical transactions found.</div>"}catch(err){historyHtml=`<div class="notice">All-time history is unavailable: ${esc(err.message)}. The current reports export may be limited by pagination.</div>`}return showPanel(key,"Total Balance Held",`<div class="actions"><button class="btn secondary" id="printFundHistory" type="button">Print transactions till date</button></div><div class="table-wrap"><table style="min-width:0"><tbody><tr><th>Total Balance Held</th><td><b>${money(f.total_balance_held)}</b></td></tr><tr><th>Total Student Balances</th><td>${money(f.total_student_balances)}</td></tr><tr><th>Remaining Event Funds</th><td>${money(f.remaining_event_funds)}</td></tr><tr><th>Outstanding Warden Utilization</th><td>${money(o.outstanding_amount)}</td></tr></tbody></table></div><div class="notice">Formula: student balances + remaining event funds − outstanding warden utilization.</div><div id="fundHistoryPrintable">${historyHtml}</div>`)}
+  if(key==="fund"){
+   showPanel(key,"Total Balance Held",`<div class="actions"><button class="btn secondary" id="printFundHistory" type="button" disabled>Print complete report</button></div><div id="fundReportPrintable"><div class="notice">Loading balance figures and transaction history…</div></div>`);
+   const panelToken=Date.now();window.__mspsFundRequest=panelToken;
+   const results=await Promise.allSettled([reports({action:"dashboard"}),reports({action:"backup_export"})]);
+   if(activePanel!=="fund"||window.__mspsFundRequest!==panelToken||!( $("fundReportPrintable") ))return;
+   if(results[0].status!=="fulfilled")throw results[0].reason;
+   const d=results[0].value,f=d.total_fund||{},o=d.warden_outstanding||{};
+   let historyHtml="<div class=notice>All-time history could not be loaded from the reports service.</div>";
+   if(results[1].status==="fulfilled"){
+    const b=results[1].value,tx=b.student_transactions||[],ev=b.event_contributions||[],wh=b.event_handovers||[],wt=b.warden_transactions||[];
+    const all=[...tx.map(x=>({...x,history_type:x.transaction_type||"Student transaction",person:x.student?.name||x.student_id||"Student"})),...ev.map(x=>({...x,history_type:"Event contribution",person:x.student?.name||x.contributor_name||"Contributor"})),...wh.map(x=>({...x,history_type:"Event handover",person:x.recipient_name||"Recipient"})),...wt.map(x=>({...x,history_type:x.transaction_type||"Warden transaction",person:"Warden"}))].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+    historyHtml=all.length?`<h3 style="margin-top:20px">Complete history till date</h3><div class="table-wrap"><table><thead><tr><th>Date/time</th><th>Type</th><th>Name</th><th>Amount</th><th>Reference</th></tr></thead><tbody>${all.map(x=>`<tr><td>${x.created_at?new Date(x.created_at).toLocaleString("en-IN"):"—"}</td><td>${esc(x.history_type)}</td><td>${esc(x.person)}</td><td>${money(x.amount)}</td><td>${esc(x.id||"—")}</td></tr>`).join("")}</tbody></table></div>`:"<div class=empty>No historical transactions found.</div>";
+   }else{historyHtml=`<div class="notice">All-time history is unavailable: ${esc(results[1].reason?.message||"Report service error")}. Balance figures are still available.</div>`}
+   $("fundReportPrintable").innerHTML=`<div class="table-wrap"><table style="min-width:0"><tbody><tr><th>Total Balance Held</th><td><b>${money(f.total_balance_held)}</b></td></tr><tr><th>Total Student Balances</th><td>${money(f.total_student_balances)}</td></tr><tr><th>Remaining Event Funds</th><td>${money(f.remaining_event_funds)}</td></tr><tr><th>Outstanding Warden Utilization</th><td>${money(o.outstanding_amount)}</td></tr></tbody></table></div><div class="notice">Formula: student balances + remaining event funds − outstanding warden utilization.</div><div id="fundHistoryPrintable">${historyHtml}</div>`;
+   const printButton=$("printFundHistory");if(printButton)printButton.disabled=false;
+   return;
+  }
   if(key==="deposits"||key==="withdrawals"||key==="borrowing")return historyPanel(key);
   if(key==="addEvent")return showPanel(key,"Add Event",`<form id="eventForm">${field("Event name","eventName","Enter event name")}<div class="field"><label>Description</label><textarea id="eventDesc"></textarea></div><button class="btn">Save Event</button></form>`);
   if(key==="contribution")return contributionPanel();
@@ -249,6 +265,19 @@ function renderStudentTable(){
  const q=($("studentSearch")?.value||"").toLowerCase();
  const rows=students.filter(s=>[s.name,s.student_code,s.class].some(x=>String(x||"").toLowerCase().includes(q)));
  $("studentTable").innerHTML=rows.length?rows.map(s=>`<div class="student-card"><div class="student-card-name">${esc(s.name)}</div><div class="student-card-meta">${esc(s.class||"—")} · ID: ${esc(s.student_code)}</div><div class="student-card-balance">${money(s.current_balance)}</div><div class="actions">${btn("Deposit",`txn:${s.student_id}:deposit`)}${btn("Withdraw",`txn:${s.student_id}:withdrawal`,"btn secondary")}${btn("Borrow",`txn:${s.student_id}:borrowing`,"btn secondary")}${btn("Edit",`edit:${s.student_id}`,"btn secondary")}${btn("Statement",`statement:${s.student_id}`,"btn secondary")}</div></div>`).join(""):`<div class="empty">No students found.</div>`;
+}
+let statementRequestSerial=0;
+async function loadStudentStatement(studentId,requestSerial,student){
+ try{
+  const d=await reports({action:"student_statement",student_id:studentId});
+  if(activePanel!=="students"||window.__mspsStatementRequest!==requestSerial||!( $("studentStatementPrintable") ))return;
+  const t=d.transactions||[],name=d.student?.name||student?.name||"Student";
+  $("panelTitle").textContent=`Statement: ${name}`;
+  $("studentStatementPrintable").innerHTML=`<div class="metric"><span>Current balance</span><strong>${money(d.current_balance?.current_balance??student?.current_balance)}</strong></div><p><b>Student:</b> ${esc(name)} &nbsp; <b>ID:</b> ${esc(d.student?.student_code||student?.student_code||"")} &nbsp; <b>Class:</b> ${esc(d.student?.class||student?.class||"")}</p>${t.length?`<div class="table-wrap"><table><thead><tr><th>Date/time</th><th>Type</th><th>Amount</th><th>Description</th></tr></thead><tbody>${t.map(x=>`<tr><td>${x.created_at?new Date(x.created_at).toLocaleString("en-IN"):"—"}</td><td>${esc(x.transaction_type||"")}</td><td>${money(x.amount)}</td><td>${esc(x.description||"")}</td></tr>`).join("")}</tbody></table></div>`:`<div class="empty">No transactions found for this student.</div>`}`;
+  const b=$("printStudentStatement");if(b)b.disabled=false;
+ }catch(err){
+  if(activePanel==="students"&&window.__mspsStatementRequest===requestSerial){const target=$("studentStatementPrintable");if(target)target.innerHTML=`<div class="notice">Unable to load statement: ${esc(err.message)}</div>`;const b=$("printStudentStatement");if(b)b.disabled=true;}
+ }
 }
 async function historyPanel(key){
  const title=key==="deposits"?"Deposits":key==="withdrawals"?"Withdrawals":"Borrowing History";
@@ -274,7 +303,7 @@ async function eventReport(id){
 function formatEmailStatus(value){if(!value)return "Not sent yet";const d=new Date(value);return Number.isNaN(d.getTime())?String(value):d.toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short",timeZone:"Asia/Kolkata"})+" (IST)"}
 async function refreshEmailStatus(){const box1=$("lastDailyReport"),box2=$("lastBackupEmail");if(!box1||!box2)return;box1.textContent="Checking…";box2.textContent="Checking…";try{const result=await invoke("amu-email-bridge",{action:"status"});const status=result.status||{};box1.textContent=formatEmailStatus(status.lastDailyReportSent);box2.textContent=formatEmailStatus(status.lastBackupSent)}catch(err){box1.textContent="Status unavailable";box2.textContent="Status unavailable";msg($("panelMsg"),"Could not load email status: "+err.message,"err")}}
 function emailPanel(){showPanel("email","Email",`<div class="metric" style="margin-bottom:10px"><span>Last Daily Report Sent</span><strong id="lastDailyReport" style="font-size:15px">Checking…</strong></div><div class="metric" style="margin-bottom:14px"><span>Last Backup Sent</span><strong id="lastBackupEmail" style="font-size:15px">Checking…</strong></div><div class="actions" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px"><button class="btn" id="sendDailyEmail" type="button">Send Daily Report</button><button class="btn secondary" id="sendBackupEmail" type="button">Send Backup</button></div><p class="muted">Each button sends only its own email. Automatic daily emails at 8 PM continue independently.</p><button class="btn secondary" id="refreshEmailStatus" type="button">Refresh Status</button>`);refreshEmailStatus()}
-function backupPanel(){showPanel("backup","Backup & Restore",`<h3>Current Student Balances</h3><div class="actions"><button class="btn" id="downloadBalances">Download Current Balances (CSV)</button><button class="btn secondary" id="printBalances">Print Current Balances</button></div><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3>Complete Website Backup</h3><button class="btn" id="downloadBackup">Download Backup (JSON)</button><p class="muted">Includes student, event, contribution, handover, transaction and settings data. PIN/security credentials are excluded.</p><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3>Validate Backup File</h3><div class="field"><label>Choose backup file from your phone</label><input id="restoreFile" type="file" accept=".json,application/json"></div><div class="actions"><button class="btn secondary" id="validateBackup" disabled>Validate Backup</button><button class="btn" id="restoreBackup" disabled>Restore Backup</button></div><div id="restorePreview" class="notice">Choose a JSON backup file, then press Validate Backup. Validation does not change database data.</div><div class="notice" style="margin-top:10px">Restore is shown here but remains disabled until the secure server-side restore operation is installed and tested. This prevents a partially restored or unsafe financial database.</div>`)}
+function backupPanel(){showPanel("backup","Backup & Restore",`<h3>Current Student Balances</h3><div class="actions"><button class="btn" id="printBalances" type="button">Print Current Balances</button></div><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3>Complete Website Backup</h3><button class="btn" id="downloadBackup">Download Backup (JSON)</button><p class="muted">Includes student, event, contribution, handover, transaction and settings data. PIN/security credentials are excluded.</p><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3>Validate Backup File</h3><div class="field"><label>Choose backup file from your phone</label><input id="restoreFile" type="file" accept=".json,application/json"></div><div class="actions"><button class="btn secondary" id="validateBackup" disabled>Validate Backup</button><button class="btn" id="restoreBackup" disabled>Restore Backup</button></div><div id="restorePreview" class="notice">Choose a JSON backup file, then press Validate Backup. Validation does not change database data.</div><div class="notice" style="margin-top:10px">Restore is shown here but remains disabled until the secure server-side restore operation is installed and tested. This prevents a partially restored or unsafe financial database.</div>`)}
 
 function extractBackupTables(input){if(!input||typeof input!=="object"||Array.isArray(input))throw new Error("The JSON root must be an object.");let candidate=input.tables&&typeof input.tables==="object"?input.tables:(input.data&&typeof input.data==="object"?input.data:input);if(candidate.tables&&typeof candidate.tables==="object")candidate=candidate.tables;return candidate}
 function normalizeBackupPayload(input){const source=extractBackupTables(input);const required=["students","events","student_transactions","event_contributions","event_handovers","warden_transactions","system_settings"];const tables={};for(const key of required){const value=source[key];if(key==="system_settings"&&value&&typeof value==="object"&&!Array.isArray(value)){tables[key]=value;continue}if(!Array.isArray(value))throw new Error("Backup is missing a valid "+key+" section.");tables[key]=value}return {backup_version:input.backup_version||1,exported_at:input.exported_at||input.exportedAt||new Date().toISOString(),tables:tables}}
@@ -294,7 +323,7 @@ document.addEventListener("click",async ev=>{
  try{
   if(action.startsWith("txn:")){const [,id,type]=action.split(":");const s=students.find(x=>x.student_id===id);const label=type==="deposit"?"Deposit":type==="withdrawal"?"Withdrawal":"Borrow";showPanel("students",`${label} — ${s?.name||"Student"}`,`<form id="studentTxnForm"><input type="hidden" id="txnStudentId" value="${esc(id)}"><input type="hidden" id="txnType" value="${esc(type)}"><div class="field"><label>Amount (₹)</label><input id="txnAmount" type="number" min="0.01" step="0.01" required placeholder="Enter amount"></div><div class="field"><label>Optional note</label><textarea id="txnDescription" placeholder="Add a note (optional)"></textarea></div><div class="field"><label>Common PIN</label><input id="txnPin" type="password" inputmode="numeric" pattern="[0-9]{4,12}" maxlength="12" required placeholder="Enter Common PIN"></div><div class="actions"><button class="btn" type="submit">Confirm ${label}</button><button class="btn secondary" type="button" id="cancelTxn">Cancel</button></div></form>`);return}
   if(action.startsWith("edit:")){const id=action.split(":")[1];const s=students.find(x=>x.student_id===id);if(!s)throw new Error("Student not found.");showPanel("students",`Edit student: ${s.name}`,`<form id="editStudentForm"><input type="hidden" id="editStudentId" value="${esc(id)}"><div class="field"><label>Student name</label><input id="editStudentName" value="${esc(s.name)}" required></div><div class="field"><label>Class</label><input id="editStudentClass" value="${esc(s.class||"")}" required></div><div class="field"><label>Unique Student ID</label><input id="editStudentCode" value="${esc(s.student_code)}" required></div><div class="actions"><button class="btn" type="submit">Save changes</button><button class="btn secondary" type="button" id="cancelEdit">Cancel</button></div></form><div class="notice">Student profile editing updates only the student's name, class and unique ID. Financial history is not changed.</div>`);return}
-  if(action.startsWith("statement:")){const d=await reports({action:"student_statement",student_id:action.split(":")[1]});const t=d.transactions||[];showPanel("students",`Statement: ${d.student.name}`,`<div class="metric"><span>Current balance</span><strong>${money(d.current_balance?.current_balance)}</strong></div><div class="table-wrap"><table><thead><tr><th>Date/time</th><th>Type</th><th>Amount</th><th>Description</th></tr></thead><tbody>${t.map(x=>`<tr><td>${new Date(x.created_at).toLocaleString("en-IN")}</td><td>${esc(x.transaction_type)}</td><td>${money(x.amount)}</td><td>${esc(x.description||"")}</td></tr>`).join("")}</tbody></table></div>`);return}
+  if(action.startsWith("statement:")){const id=action.split(":")[1];const student=students.find(x=>x.student_id===id);if(!student)throw new Error("Student not found.");const requestSerial=++statementRequestSerial;window.__mspsStatementRequest=requestSerial;showPanel("students",`Statement: ${student.name}`,`<div class="actions"><button class="btn secondary" id="printStudentStatement" type="button" disabled>Print statement</button></div><div id="studentStatementPrintable"><div class="notice">Loading student statement…</div></div>`);loadStudentStatement(id,requestSerial,student);return}
   if(action.startsWith("balance:")){const s=students.find(x=>x.student_id===action.split(":")[1]);if(!s)throw new Error("Student not found.");showPanel("students",`Current Balance — ${s.name}`,`<div class="metric"><span>${esc(s.student_code)} · ${esc(s.class||"")}</span><strong>${money(s.current_balance)}</strong></div>`);return}
   if(action.startsWith("eventreport:")){await eventReport(action.split(":")[1]);return}
   if(action.startsWith("handover:")){const id=action.split(":")[1];const amount=prompt("Handover amount (₹):");if(amount===null)return;if(!Number.isFinite(Number(amount))||Number(amount)<=0)throw new Error("Enter a valid positive amount.");const recipient=prompt("Recipient name (optional):")||"";const description=prompt("Description (optional):")||"";const pin=pinPrompt();if(pin===null)return;await api({action:"event_handover",pin,event_id:id,amount:Number(amount),recipient_name:recipient,description});alert("Event handover recorded.");await openPanel("events");return}
@@ -319,7 +348,8 @@ $("panelBody").addEventListener("submit",async e=>{
  }catch(x){msg($("panelMsg"),x.message,"err")}
 });
 $("panelBody").addEventListener("click",async e=>{
- if(e.target.id==="printFundHistory"){printCurrentReport("AMU transactions till date","fundHistoryPrintable");return}
+ if(e.target.id==="printFundHistory"){printCurrentReport("MSPS MANAGEMENT — Total Balance and Complete Transactions","fundReportPrintable");return}
+ if(e.target.id==="printStudentStatement"){printCurrentReport("MSPS MANAGEMENT — Student Statement — "+$("panelTitle").textContent.replace(/^Statement:\s*/,""),"studentStatementPrintable");return}
  if(e.target.id==="printHistory"){const date=$("historyDate")?.value||today();printCurrentReport((activePanel==="deposits"?"Deposit":activePanel==="withdrawals"?"Withdrawal":"Borrowing")+" report — "+date,"historyResult");return}
  if(e.target.id==="printEventReport"){printCurrentReport("Event report — "+$("panelTitle").textContent,"eventReportPrintable");return}
  if(e.target.id==="refreshEmailStatus"){await refreshEmailStatus();return}
@@ -335,7 +365,7 @@ $("panelBody").addEventListener("click",async e=>{
  if(e.target.id==="cancelTxn"||e.target.id==="cancelEdit"){studentsPanel();return}
  if(e.target.id==="loadHistory"){try{await loadHistory(activePanel)}catch(x){msg($("panelMsg"),x.message,"err")}}
  if(e.target.id==="generateDaily"){try{const d=await reports({action:"daily_report",date:$("emailDate").value});$("dailyPreview").textContent=JSON.stringify(d,null,2)}catch(x){msg($("panelMsg"),x.message,"err")}}
- if(e.target.id==="validateBackup"){const file=$("restoreFile").files?.[0];const box=$("restorePreview");if(!file){box.textContent="Choose a JSON backup file first.";return}try{const raw=await file.text();const parsed=JSON.parse(raw);normalizeBackupPayload(parsed);box.textContent="Backup validation successful. All seven required AMU data sections are present and correctly structured. This check does not change database data. Secure server-side restore is not installed yet.";box.style.background="#ecfdf3";box.style.color="#067647";$("restoreBackup").disabled=true}catch(err){box.textContent="Backup validation failed: "+err.message;box.style.background="#fef3f2";box.style.color="#b42318"}}
+ if(e.target.id==="validateBackup"){const file=$("restoreFile").files?.[0];const box=$("restorePreview");if(!file){box.textContent="Choose a JSON backup file first.";return}try{const raw=await file.text();const parsed=JSON.parse(raw);normalizeBackupPayload(parsed);box.textContent="Backup validation successful. All seven required MSPS data sections are present and correctly structured. This check does not change database data. Secure server-side restore is not installed yet.";box.style.background="#ecfdf3";box.style.color="#067647";$("restoreBackup").disabled=true}catch(err){box.textContent="Backup validation failed: "+err.message;box.style.background="#fef3f2";box.style.color="#b42318"}}
  if(e.target.id==="downloadBackup"){
     const button=e.target;
     const originalText=button.textContent;
@@ -345,7 +375,7 @@ $("panelBody").addEventListener("click",async e=>{
       const d=await reports({action:"backup_export"});
       const compatibleBackup=normalizeBackupPayload(d);
       const json=JSON.stringify(compatibleBackup,null,2);
-      const filename="AMU_Backup_"+today()+".json";
+      const filename="MSPS_Backup_"+today()+".json";
       // Data URLs avoid URL.createObjectURL(), unavailable in some Android
       // in-app browsers and embedded web views.
       let downloadUrl="data:application/json;charset=utf-8,"+encodeURIComponent(json);
@@ -365,8 +395,7 @@ $("panelBody").addEventListener("click",async e=>{
       button.textContent=originalText;
     }
   }
- if(e.target.id==="downloadBalances"){try{downloadCurrentBalances()}catch(err){msg($("panelMsg"),"Balance download failed: "+err.message,"err")}return}
- if(e.target.id==="printBalances"){const rows=balanceRows();const html=`<table><thead><tr><th>Student</th><th>Student ID</th><th>Class</th><th>Current Balance</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.student_code)}</td><td>${esc(r.class)}</td><td>${money(r.current_balance)}</td></tr>`).join("")}</tbody></table><p>Total students: ${rows.length}</p>`;printReport("AMU — Current Student Balances",html);return}
+ if(e.target.id==="printBalances"){const rows=balanceRows();const html=`<table><thead><tr><th>Student</th><th>Student ID</th><th>Class</th><th>Current Balance</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.student_code)}</td><td>${esc(r.class)}</td><td>${money(r.current_balance)}</td></tr>`).join("")}</tbody></table><p>Total students: ${rows.length}</p>`;printReport("MSPS MANAGEMENT — Current Student Balances",html);return}
  if(e.target.id==="restoreBackup"){msg($("panelMsg"),"Restore is not enabled. The secure database restore service must be installed and tested first; no database data has been changed.","err");return}
 
 });

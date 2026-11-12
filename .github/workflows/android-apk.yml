@@ -78,9 +78,9 @@ jobs:
               defaultConfig {
                   applicationId 'com.amu.hostel'
                   minSdk 23
-                  targetSdk 35
-                  versionCode 1
-                  versionName '1.0'
+                  targetSdk 34
+                  versionCode 2
+                  versionName '1.1'
               }
           }
 
@@ -94,20 +94,38 @@ jobs:
           }
           EOF
 
+          mkdir -p app/src/main/res/mipmap-mdpi
+          mkdir -p app/src/main/res/mipmap-hdpi
+          mkdir -p app/src/main/res/mipmap-xhdpi
+          mkdir -p app/src/main/res/mipmap-xxhdpi
+          mkdir -p app/src/main/res/mipmap-xxxhdpi
+
+          cp amu-icon-512.png app/src/main/res/mipmap-mdpi/ic_launcher.png
+          cp amu-icon-512.png app/src/main/res/mipmap-hdpi/ic_launcher.png
+          cp amu-icon-512.png app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          cp amu-icon-512.png app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          cp amu-icon-512.png app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+
           cat > app/src/main/AndroidManifest.xml <<'EOF'
           <manifest xmlns:android="http://schemas.android.com/apk/res/android">
               <uses-permission android:name="android.permission.INTERNET" />
+
               <application
                   android:theme="@android:style/Theme.Material.Light.NoActionBar"
                   android:label="AMU"
+                  android:icon="@mipmap/ic_launcher"
+                  android:roundIcon="@mipmap/ic_launcher"
                   android:usesCleartextTraffic="false">
+
                   <activity
                       android:name=".MainActivity"
                       android:exported="true">
+
                       <intent-filter>
                           <action android:name="android.intent.action.MAIN" />
                           <category android:name="android.intent.category.LAUNCHER" />
                       </intent-filter>
+
                   </activity>
               </application>
           </manifest>
@@ -117,11 +135,15 @@ jobs:
           package com.amu.hostel;
 
           import android.os.Bundle;
+          import android.graphics.Color;
+          import android.view.View;
           import android.webkit.WebView;
           import android.webkit.WebViewClient;
           import android.webkit.WebSettings;
+
           import androidx.activity.ComponentActivity;
           import androidx.activity.OnBackPressedCallback;
+          import androidx.core.view.WindowCompat;
 
           public class MainActivity extends ComponentActivity {
               private WebView webView;
@@ -130,14 +152,35 @@ jobs:
               protected void onCreate(Bundle savedInstanceState) {
                   super.onCreate(savedInstanceState);
 
+                  // Keep the app below the Android status bar and camera cutout.
+                  WindowCompat.setDecorFitsSystemWindows(getWindow(), true);
+
+                  getWindow().setStatusBarColor(Color.WHITE);
+                  getWindow().setNavigationBarColor(Color.WHITE);
+
+                  getWindow().getDecorView().setSystemUiVisibility(
+                      View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                  );
+
+                  if (android.os.Build.VERSION.SDK_INT >= 26) {
+                      getWindow().getDecorView().setSystemUiVisibility(
+                          View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR |
+                          View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                      );
+                  }
+
                   webView = new WebView(this);
+
                   WebSettings settings = webView.getSettings();
                   settings.setJavaScriptEnabled(true);
                   settings.setDomStorageEnabled(true);
                   settings.setDatabaseEnabled(true);
 
                   webView.setWebViewClient(new WebViewClient());
-                  webView.loadUrl("https://hostel2943-tech.github.io/AMU-Android-/");
+
+                  webView.loadUrl(
+                      "https://hostel2943-tech.github.io/AMU-Android-/"
+                  );
 
                   setContentView(webView);
 

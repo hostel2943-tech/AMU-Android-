@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#10243a"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="application-name" content="MSPS MANAGEMENT"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="amu-icon.svg" type="image/svg+xml">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#10243a"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="application-name" content="MSP"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="amu-icon.svg" type="image/svg+xml">
 <title>MSPS MANAGEMENT</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -18,7 +18,7 @@ main{max-width:1150px;margin:auto;padding:22px 16px 50px}.welcome{display:flex;j
 .tile:active{transform:scale(.99)}.tile .ico{width:38px;height:38px;border-radius:11px;background:#eaf2fa;color:var(--blue);display:grid;place-items:center;font-size:21px;margin-bottom:12px}
 .tile strong{display:block;font-size:14px;color:#172b43}.tile small{display:block;color:var(--muted);font-size:11px;line-height:1.4;margin-top:5px}.tile .tile-stat{display:block;color:var(--navy);font-size:17px;font-weight:800;line-height:1.25;margin-top:9px}.tile .tile-stat em{display:block;font-style:normal;color:var(--muted);font-size:10px;font-weight:500;margin-top:2px}
 .small-grid .tile{min-height:100px;padding:13px}.small-grid .ico{width:32px;height:32px;font-size:18px;margin-bottom:8px}
-.panel{display:none;position:fixed;z-index:20;inset:3vh 3vw;max-height:94vh;overflow:auto;background:white;border:1px solid var(--line);border-radius:15px;margin:0;padding:18px;box-shadow:0 0 0 100vmax #10243a99,0 12px 40px #10243a35}.panel.show{display:block}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:15px}.panel-head h2{font-size:18px;margin:0;color:var(--navy)}.close{border:0;background:#eef2f6;border-radius:8px;padding:8px 11px;color:#344054}
+.panel{display:none;position:fixed;z-index:20;top:50%;left:50%;transform:translate(-50%,-50%);width:min(94vw,900px);height:auto;max-height:calc(100dvh - 20mm);overflow:hidden;background:white;border:1px solid var(--line);border-radius:15px;margin:0;padding:18px;box-shadow:0 0 0 100vmax #10243a99,0 12px 40px #10243a35}.panel.show{display:block}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:15px}.panel-head h2{font-size:18px;margin:0;color:var(--navy)}.close{border:0;background:#eef2f6;border-radius:8px;padding:8px 11px;color:#344054}
 .row{display:flex;gap:10px;flex-wrap:wrap}.field{flex:1;min-width:160px;margin-bottom:10px}label{display:block;font-size:12px;font-weight:700;color:#475467;margin-bottom:6px}
 input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:8px;padding:11px;background:white;color:#182230}textarea{min-height:75px;resize:vertical}
 .btn{border:0;border-radius:8px;padding:11px 14px;background:var(--blue);color:white;font-weight:700;font-size:13px}.btn.secondary{background:#edf2f7;color:#344054}.btn.danger{background:#b42318}.btn:disabled{opacity:.5;cursor:not-allowed}
@@ -34,7 +34,7 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 .panel{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 .login-card{animation:loginIn .22s ease-out}
 @keyframes loginIn{from{opacity:.7;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:600px){.panel{inset:8px 7px;max-height:calc(100dvh - 16px);padding:14px;border-radius:13px}main{padding:16px 11px 36px}.login-card{padding:21px 18px}.student-card .actions .btn{flex:1 1 28%;min-width:0}}
+@media(max-width:600px){.panel{top:50%;left:50%;width:calc(100vw - 4mm);max-height:calc(100dvh - 20mm);padding:12px;border-radius:13px}main{padding:16px 11px 36px}.login-card{padding:21px 18px}.student-card .actions .btn{flex:1 1 28%;min-width:0}}
 .hidden{display:none!important}.muted{color:var(--muted);font-size:12px}.pill{display:inline-block;background:#eef4fa;color:#315b80;padding:4px 7px;border-radius:20px;font-size:10px}
 @media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.small-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.welcome h1{font-size:21px}}
 @media(max-width:420px){.small-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.tile{min-height:108px;padding:13px}.small-grid .tile{min-height:94px}.who{display:none}}
@@ -44,7 +44,7 @@ html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;overscr
 body{min-height:100dvh;padding-bottom:env(safe-area-inset-bottom);touch-action:pan-y}
 button,.tile{ -webkit-tap-highlight-color:transparent;touch-action:manipulation }
 input,select,textarea{font-size:16px;min-height:44px}
-.panel{inset-block:max(10mm,env(safe-area-inset-top)) max(10mm,env(safe-area-inset-bottom));inset-inline:0;max-height:calc(100dvh - 20mm);width:auto;border-radius:16px 16px 0 0;padding:15px;overscroll-behavior:contain}
+.panel{top:50%;left:50%;transform:translate(-50%,-50%);width:min(96vw,900px);height:auto;max-height:calc(100dvh - 20mm);border-radius:16px;padding:15px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 .panel.show{display:flex;flex-direction:column}
 .panel-head{flex:0 0 auto;position:sticky;top:-15px;background:#fff;z-index:2;padding-top:4px}
 #panelBody{min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding-bottom:8px}
@@ -57,7 +57,7 @@ input,select,textarea{font-size:16px;min-height:44px}
  .tile{min-height:76px;padding:9px;border-radius:11px}.tile .ico{width:27px;height:27px;font-size:16px;border-radius:8px;margin-bottom:5px}
  .tile strong{font-size:11px;line-height:1.2}.tile small{font-size:9px;line-height:1.2;margin-top:3px}.tile .tile-stat{font-size:13px;margin-top:4px}.tile .tile-stat em{font-size:8px}
  .small-grid .tile{min-height:72px;padding:8px}.small-grid .ico{width:24px;height:24px;font-size:14px;margin-bottom:4px}.small-grid .tile strong{font-size:10px}.small-grid .tile small{font-size:8px}
- .panel{padding:12px}.panel-head{top:-12px;padding-bottom:9px;margin-bottom:10px}.panel-head h2{font-size:16px}.close{padding:8px 10px}
+ .panel{top:50%;left:50%;width:calc(100vw - 4mm);max-height:calc(100dvh - 20mm);padding:12px;border-radius:13px}.panel-head{top:-12px;padding-bottom:9px;margin-bottom:10px}.panel-head h2{font-size:16px}.close{padding:8px 10px}
  .cards{gap:7px}.metric{padding:10px}.metric strong{font-size:16px}
  .actions .btn{flex:1 1 auto;min-height:42px}.table-wrap table{font-size:11px}
 }
@@ -106,6 +106,22 @@ input,select,textarea{font-size:16px;min-height:44px}
  .small-grid .tile{min-height:78px}
  .tile small,.small-grid .tile small{display:block}
 }
+
+.mini-modal{display:none;position:fixed;inset:0;z-index:60;background:#10243a88;align-items:center;justify-content:center;padding:10mm 2mm}
+.mini-modal.show{display:flex}
+.mini-dialog{width:min(96vw,430px);max-height:calc(100dvh - 20mm);overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 12px 40px #10243a35}
+.mini-dialog h3{margin:0 0 14px;color:var(--navy);font-size:17px}
+.student-table-wrap{width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px}
+.student-table{min-width:850px;width:100%;border-collapse:collapse;font-size:12px}
+.student-table th,.student-table td{white-space:nowrap;padding:9px 8px;border-bottom:1px solid #edf0f4;vertical-align:middle}
+.student-table th{position:sticky;top:0;background:#f7f9fc;z-index:1}
+.student-name{font-weight:800;color:var(--navy);white-space:normal;min-width:140px}
+.student-meta{display:block;font-size:10px;color:var(--muted);font-weight:400;margin-top:3px}
+.student-balance{font-weight:900;font-size:14px;color:#172b43}
+.student-table .btn{padding:7px 9px;font-size:11px}
+.student-controls{display:grid;grid-template-columns:1fr;gap:9px}
+.student-controls>.btn,.student-controls>.field{width:100%;margin:0}
+
 #printRoot{display:none}
 @media print{@page{size:auto;margin:12mm}html,body{height:auto!important;overflow:visible!important;background:#fff!important}body>*:not(#printRoot){display:none!important}#printRoot{display:block!important;position:static!important;width:100%!important;padding:0!important;margin:0!important;color:#111!important;background:#fff!important;font-family:Arial,sans-serif}#printRoot h1{text-align:center;font-size:19px;margin:0 0 8px}#printRoot .print-meta{font-size:11px;margin:8px 0 14px}#printRoot .table-wrap{overflow:visible!important}#printRoot table{width:100%!important;border-collapse:collapse;min-width:0!important;font-size:10px;table-layout:auto}#printRoot th,#printRoot td{border:1px solid #888;padding:6px;text-align:left;color:#111!important;white-space:normal!important;overflow-wrap:anywhere}#printRoot th{background:#eee!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.no-print{display:none!important}#printRoot tr{break-inside:avoid;page-break-inside:avoid}}
 
@@ -168,13 +184,14 @@ async function invoke(fn,body){
 async function api(body){return invoke("amu-api",body)}
 async function reports(body){return invoke("amu-reports",body)}
 function pinPrompt(){const p=prompt("Enter your Common PIN to authorize this financial transaction:");if(p===null)return null;if(!/^\d{4,12}$/.test(p)){alert("PIN must contain 4–12 digits.");return null}return p}
-const panelStack=[];let panelHistoryActive=false;
+const panelStack=[];let panelHistoryActive=false;let pendingRestorePayload=null;
 function showPanel(key,title,html){
  const panel=$("panel");
  if(panel.classList.contains("show")){
   const oldTitle=$("panelTitle").textContent;
   if(key!==activePanel||title!==oldTitle){panelStack.push({key:activePanel,title:oldTitle,html:$("panelBody").innerHTML,message:$("panelMsg").textContent,messageClass:$("panelMsg").className});history.pushState({amuPanel:true},"",location.pathname+location.search+"#amu-panel");}
  }else{panelHistoryActive=true;history.pushState({amuPanel:true},"",location.pathname+location.search+"#amu-panel");}
+ document.querySelectorAll(".mini-modal").forEach(modal=>modal.remove());
  activePanel=key;$("panelTitle").textContent=title;$("panelBody").innerHTML=html;panel.classList.add("show");clearMsg($("panelMsg"));panel.scrollTop=0
 }
 function restorePanel(snapshot){activePanel=snapshot.key;$("panelTitle").textContent=snapshot.title;$("panelBody").innerHTML=snapshot.html;$("panelMsg").textContent=snapshot.message;$("panelMsg").className=snapshot.messageClass;$("panel").scrollTop=0}
@@ -231,15 +248,19 @@ async function openPanel(key){
   if(key==="fund"){
    showPanel(key,"Total Balance Held",`<div class="actions"><button class="btn secondary" id="printFundHistory" type="button" disabled>Print complete report</button></div><div id="fundReportPrintable"><div class="notice">Loading balance figures and transaction history…</div></div>`);
    const panelToken=Date.now();window.__mspsFundRequest=panelToken;
-   const results=await Promise.allSettled([reports({action:"dashboard"}),reports({action:"backup_export"})]);
+   const results=await Promise.allSettled([reports({action:"dashboard"}),reports({action:"fund_history"})]);
    if(activePanel!=="fund"||window.__mspsFundRequest!==panelToken||!( $("fundReportPrintable") ))return;
    if(results[0].status!=="fulfilled")throw results[0].reason;
    const d=results[0].value,f=d.total_fund||{},o=d.warden_outstanding||{};
    let historyHtml="<div class=notice>All-time history could not be loaded from the reports service.</div>";
    if(results[1].status==="fulfilled"){
-    const b=results[1].value,tx=b.student_transactions||[],ev=b.event_contributions||[],wh=b.event_handovers||[],wt=b.warden_transactions||[];
-    const all=[...tx.map(x=>({...x,history_type:x.transaction_type||"Student transaction",person:x.student?.name||x.student_id||"Student"})),...ev.map(x=>({...x,history_type:"Event contribution",person:x.student?.name||x.contributor_name||"Contributor"})),...wh.map(x=>({...x,history_type:"Event handover",person:x.recipient_name||"Recipient"})),...wt.map(x=>({...x,history_type:x.transaction_type||"Warden transaction",person:"Warden"}))].sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
-    historyHtml=all.length?`<h3 style="margin-top:20px">Complete history till date</h3><div class="table-wrap"><table><thead><tr><th>Date/time</th><th>Type</th><th>Name</th><th>Amount</th><th>Reference</th></tr></thead><tbody>${all.map(x=>`<tr><td>${x.created_at?new Date(x.created_at).toLocaleString("en-IN"):"—"}</td><td>${esc(x.history_type)}</td><td>${esc(x.person)}</td><td>${money(x.amount)}</td><td>${esc(x.id||"—")}</td></tr>`).join("")}</tbody></table></div>`:"<div class=empty>No historical transactions found.</div>";
+    const b=results[1].value||{},tx=b.student_transactions||[],ev=b.event_contributions||[],wh=b.event_handovers||[],wt=b.warden_transactions||[],studentMap=new Map((b.students||[]).map(x=>[x.id,x.name])),eventMap=new Map((b.events||[]).map(x=>[x.id,x.event_name])),wardenMap=new Map((b.wardens||[]).map(x=>[x.id,x.warden_name]));
+    const eventOnly=ev.filter(x=>!x.student_transaction_id);
+    const transferGroups=new Map();const ordinary=[];
+    tx.forEach(x=>{if(x.transfer_id){const group=transferGroups.get(x.transfer_id)||[];group.push(x);transferGroups.set(x.transfer_id,group)}else ordinary.push(x)});
+    const transferRows=[...transferGroups.values()].map(group=>{const debit=group.find(x=>x.transaction_type==="transfer_out")||group[0],credit=group.find(x=>x.transaction_type==="transfer_in")||group.find(x=>x!==debit);return {...debit,history_type:"Student transfer",person:studentMap.get(debit.student_id)||"Student",description:credit?`${studentMap.get(debit.student_id)||"Sender"} → ${studentMap.get(credit.student_id)||"Receiver"}`:(debit.description||"Transfer"),amount:Math.abs(Number(debit.amount||0))}});
+    const all=[...ordinary.map(x=>({...x,history_type:x.event_id?"Registered event contribution":(x.transaction_type||"Student transaction"),person:studentMap.get(x.student_id)||"Student",event_name:eventMap.get(x.event_id)||""})),...transferRows,...eventOnly.map(x=>({...x,history_type:x.contribution_source||"Manual event contribution",person:x.contributor_name||studentMap.get(x.student_id)||"Contributor",event_name:eventMap.get(x.event_id)||""})),...wh.map(x=>({...x,history_type:"Event handover",person:x.recipient_name||"Recipient",event_name:eventMap.get(x.event_id)||""})),...wt.map(x=>({...x,history_type:`Warden ${x.transaction_type||"transaction"}`,person:wardenMap.get(x.recorded_by)||"Warden"}))].sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
+    historyHtml=all.length?`<h3 style="margin-top:20px">Complete Transaction History</h3><div class="table-wrap"><table><thead><tr><th>Date/time</th><th>Type</th><th>Name</th><th>Event / Description</th><th>Amount</th><th>Reference</th></tr></thead><tbody>${all.map(x=>`<tr><td>${x.created_at?new Date(x.created_at).toLocaleString("en-IN",{timeZone:"Asia/Kolkata"})+" IST":"—"}</td><td>${esc(x.history_type)}</td><td>${esc(x.person)}</td><td>${esc([x.event_name,x.description].filter(Boolean).join(" · ")||"—")}</td><td>${money(Math.abs(Number(x.amount||0)))}</td><td>${esc(x.id||"—")}</td></tr>`).join("")}</tbody></table></div>`:"<div class=empty>No historical transactions found.</div>";
    }else{historyHtml=`<div class="notice">All-time history is unavailable: ${esc(results[1].reason?.message||"Report service error")}. Balance figures are still available.</div>`}
    $("fundReportPrintable").innerHTML=`<div class="table-wrap"><table style="min-width:0"><tbody><tr><th>Total Balance Held</th><td><b>${money(f.total_balance_held)}</b></td></tr><tr><th>Total Student Balances</th><td>${money(f.total_student_balances)}</td></tr><tr><th>Remaining Event Funds</th><td>${money(f.remaining_event_funds)}</td></tr><tr><th>Outstanding Warden Utilization</th><td>${money(o.outstanding_amount)}</td></tr></tbody></table></div><div class="notice">Formula: student balances + remaining event funds − outstanding warden utilization.</div><div id="fundHistoryPrintable">${historyHtml}</div>`;
    const printButton=$("printFundHistory");if(printButton)printButton.disabled=false;
@@ -258,13 +279,19 @@ async function openPanel(key){
 }
 function metric(label,value){return `<div class="metric"><span>${label}</span><strong>${money(value)}</strong></div>`}
 function studentsPanel(){
- showPanel("students","Registered Students",`<button class="btn" type="button" id="toggleAddStudent">＋ Add Student</button><form id="studentForm" class="hidden" style="margin-top:14px"><div class="row">${field("Student name","studentName","Full name")}${field("Class","studentClass","Class / batch")}${field("Unique Student ID","studentCode","Unique ID")}</div><div class="actions"><button class="btn">Save Student</button><button class="btn secondary" type="button" id="cancelAddStudent">Cancel</button></div></form><hr style="border:0;border-top:1px solid #edf0f4;margin:18px 0"><div class="field"><label>Search students</label><input id="studentSearch" placeholder="Search name, ID or class"></div><div id="studentTable"></div>`);
+ showPanel("students","Registered Students",`<div class="student-controls"><button class="btn" type="button" id="toggleAddStudent">＋ Add Student</button><div class="field"><label>Search students</label><input id="studentSearch" placeholder="Search name, ID or class"></div></div><h3 style="font-size:15px;margin:16px 0 8px;color:var(--navy)">Registered Students</h3><div id="studentTable"></div><div id="studentAddModal" class="mini-modal" aria-hidden="true"><div class="mini-dialog" role="dialog" aria-modal="true" aria-labelledby="studentAddTitle"><h3 id="studentAddTitle">Add Student</h3><form id="studentForm">${field("Student name","studentName","Full name")} ${field("Class","studentClass","Class / batch")} ${field("Unique Student ID","studentCode","Unique ID")}<div class="actions"><button class="btn" type="submit">Save Student</button><button class="btn secondary" type="button" id="cancelAddStudent">Cancel</button></div></form></div></div>`);
+ const modal=$("studentAddModal");document.body.appendChild(modal);
+ $("toggleAddStudent").addEventListener("click",()=>modal.classList.add("show"));
+ $("cancelAddStudent").addEventListener("click",()=>modal.classList.remove("show"));
+ $("studentForm").addEventListener("submit",async e=>{e.preventDefault();const save=e.target.querySelector('button[type="submit"]');save.disabled=true;save.textContent="Saving…";try{await api({action:"add_student",student_code:$("studentCode").value.trim(),name:$("studentName").value.trim(),class:$("studentClass").value.trim()});await loadBase();studentsPanel();msg($("panelMsg"),"Student saved successfully.","ok")}catch(err){msg($("panelMsg"),err.message,"err");save.disabled=false;save.textContent="Save Student"}});
  renderStudentTable();
 }
 function renderStudentTable(){
  const q=($("studentSearch")?.value||"").toLowerCase();
  const rows=students.filter(s=>[s.name,s.student_code,s.class].some(x=>String(x||"").toLowerCase().includes(q)));
- $("studentTable").innerHTML=rows.length?rows.map(s=>`<div class="student-card"><div class="student-card-name">${esc(s.name)}</div><div class="student-card-meta">${esc(s.class||"—")} · ID: ${esc(s.student_code)}</div><div class="student-card-balance">${money(s.current_balance)}</div><div class="actions">${btn("Deposit",`txn:${s.student_id}:deposit`)}${btn("Withdraw",`txn:${s.student_id}:withdrawal`,"btn secondary")}${btn("Borrow",`txn:${s.student_id}:borrowing`,"btn secondary")}${btn("Edit",`edit:${s.student_id}`,"btn secondary")}${btn("Statement",`statement:${s.student_id}`,"btn secondary")}</div></div>`).join(""):`<div class="empty">No students found.</div>`;
+ const headers="<thead><tr><th>Name</th><th>Current Balance</th><th>Deposit</th><th>Withdraw</th><th>Borrow</th><th>Edit</th><th>Statement</th></tr></thead>";
+ const body=rows.map(s=>`<tr><td class="student-name">${esc(s.name)}<span class="student-meta">${esc(s.class||"—")} · ID: ${esc(s.student_code)}</span></td><td class="student-balance">${money(s.current_balance)}</td><td>${btn("Deposit",`txn:${s.student_id}:deposit`)}</td><td>${btn("Withdraw",`txn:${s.student_id}:withdrawal`,"btn secondary")}</td><td>${btn("Borrow",`txn:${s.student_id}:borrowing`,"btn secondary")}</td><td>${btn("Edit",`edit:${s.student_id}`,"btn secondary")}</td><td>${btn("Statement",`statement:${s.student_id}`,"btn secondary")}</td></tr>`).join("");
+ $("studentTable").innerHTML=rows.length?`<div class="student-table-wrap" aria-label="Registered students table; swipe horizontally to see all columns"><table class="student-table">${headers}<tbody>${body}</tbody></table></div><p class="muted">Swipe left or right to view all columns.</p>`:`<div class="empty">No students found.</div>`;
 }
 let statementRequestSerial=0;
 async function loadStudentStatement(studentId,requestSerial,student){
@@ -290,7 +317,7 @@ async function loadHistory(key){
  $("historyResult").innerHTML=`<div class="metric" style="margin-top:12px"><span>Total ${action} on ${esc(date)}</span><strong>${money(d.total)}</strong></div>${list.length?`<div class="table-wrap"><table><thead><tr><th>Time</th><th>Student</th><th>Amount</th><th>Reference</th></tr></thead><tbody>${list.map(x=>`<tr><td>${new Date(x.created_at).toLocaleString("en-IN")}</td><td>${esc(x.student?.name||x.student_id)}<br>${esc(x.student?.student_code||"")}</td><td>${money(x.amount)}</td><td>${esc(x.id||"—")}</td></tr>`).join("")}</tbody></table></div>`:`<div class="empty">No records for this date.</div>`}`;
 }
 async function contributionPanel(){
- showPanel("contribution","Event Contribution",`${eventSelect("registeredEventSelect")}<h3 style="font-size:15px;margin-top:18px">Registered Student Contribution</h3><form id="registeredContributionForm"><div class="field"><label>Select registered students (you can select multiple)</label><input id="contributionStudentSearch" placeholder="Search students" style="margin-bottom:8px"><div id="contributionStudentList" style="max-height:230px;overflow:auto;border:1px solid var(--line);border-radius:9px;padding:8px">${students.map(st=>`<label class="student-choice" style="display:flex;align-items:center;gap:9px;padding:7px;border-bottom:1px solid #edf0f4;font-weight:500"><input type="checkbox" value="${esc(st.student_id)}" style="width:auto"> <span>${esc(st.name)} · ${esc(st.student_code)} · Balance ${money(st.current_balance)}</span></label>`).join("")}</div></div><div class="field"><label>Contribution amount per selected student (₹)</label><input id="registeredContributionAmount" type="number" min="0.01" step="0.01" required></div><div class="field"><label>Note (optional)</label><input id="registeredContributionDescription" placeholder="Reason or note"></div><div class="field"><label>Common PIN</label><input id="registeredContributionPin" type="password" inputmode="numeric" required></div><button class="btn">Confirm Registered Contributions</button></form><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3 style="font-size:15px">Manual Contribution</h3><form id="manualForm">${eventSelect()}<div class="row">${field("Contributor name","contributorName","Name of contributor")}${field("Amount (₹)","contributionAmount","Amount","number")}</div><div class="field"><label>Common PIN</label><input id="contributionPin" type="password" inputmode="numeric" required></div><button class="btn">Save Manual Contribution</button></form>`);
+ showPanel("contribution","Event Contribution",`${eventSelect("registeredEventSelect")}<h3 style="font-size:15px;margin-top:18px">Registered Student Contribution</h3><form id="registeredContributionForm"><div class="field"><label>Search registered students to select (multiple selection allowed)</label><input id="contributionStudentSearch" type="search" autocomplete="off" placeholder="Type student name or ID to show matching students" style="margin-bottom:8px"><div id="contributionStudentCount" class="muted" style="margin:0 0 7px">No students displayed. Search by name or student ID to find students.</div><div id="contributionStudentList" style="max-height:230px;overflow:auto;border:1px solid var(--line);border-radius:9px;padding:8px">${students.map(st=>`<label class="student-choice" style="display:none;align-items:center;gap:9px;padding:7px;border-bottom:1px solid #edf0f4;font-weight:500"><input type="checkbox" value="${esc(st.student_id)}" style="width:auto"> <span>${esc(st.name)} · ${esc(st.student_code)} · Balance ${money(st.current_balance)}</span></label>`).join("")}</div></div><div class="field"><label>Contribution amount per selected student (₹)</label><input id="registeredContributionAmount" type="number" min="0.01" step="0.01" required></div><div class="field"><label>Note (optional)</label><input id="registeredContributionDescription" placeholder="Reason or note"></div><div class="field"><label>Common PIN</label><input id="registeredContributionPin" type="password" inputmode="numeric" required></div><button class="btn">Confirm Registered Contributions</button></form><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3 style="font-size:15px">Manual Contribution</h3><form id="manualForm">${eventSelect()}<div class="row">${field("Contributor name","contributorName","Name of contributor")}${field("Amount (₹)","contributionAmount","Amount","number")}</div><div class="field"><label>Common PIN</label><input id="contributionPin" type="password" inputmode="numeric" required></div><button class="btn">Save Manual Contribution</button></form>`);
 }
 async function eventsPanel(){
  const es=await api({action:"list_events"});events=Array.isArray(es)?es:(es?.events||[]);
@@ -302,11 +329,11 @@ async function eventReport(id){
 }
 function formatEmailStatus(value){if(!value)return "Not sent yet";const d=new Date(value);return Number.isNaN(d.getTime())?String(value):d.toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short",timeZone:"Asia/Kolkata"})+" (IST)"}
 async function refreshEmailStatus(){const box1=$("lastDailyReport"),box2=$("lastBackupEmail");if(!box1||!box2)return;box1.textContent="Checking…";box2.textContent="Checking…";try{const result=await invoke("amu-email-bridge",{action:"status"});const status=result.status||{};box1.textContent=formatEmailStatus(status.lastDailyReportSent);box2.textContent=formatEmailStatus(status.lastBackupSent)}catch(err){box1.textContent="Status unavailable";box2.textContent="Status unavailable";msg($("panelMsg"),"Could not load email status: "+err.message,"err")}}
-function emailPanel(){showPanel("email","Email",`<div class="metric" style="margin-bottom:10px"><span>Last Daily Report Sent</span><strong id="lastDailyReport" style="font-size:15px">Checking…</strong></div><div class="metric" style="margin-bottom:14px"><span>Last Backup Sent</span><strong id="lastBackupEmail" style="font-size:15px">Checking…</strong></div><div class="actions" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px"><button class="btn" id="sendDailyEmail" type="button">Send Daily Report</button><button class="btn secondary" id="sendBackupEmail" type="button">Send Backup</button></div><p class="muted">Each button sends only its own email. Automatic daily emails at 8 PM continue independently.</p><button class="btn secondary" id="refreshEmailStatus" type="button">Refresh Status</button>`);refreshEmailStatus()}
-function backupPanel(){showPanel("backup","Backup & Restore",`<h3>Current Student Balances</h3><div class="actions"><button class="btn" id="printBalances" type="button">Print Current Balances</button></div><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3>Complete Website Backup</h3><button class="btn" id="downloadBackup">Download Backup (JSON)</button><p class="muted">Includes student, event, contribution, handover, transaction and settings data. PIN/security credentials are excluded.</p><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3>Validate Backup File</h3><div class="field"><label>Choose backup file from your phone</label><input id="restoreFile" type="file" accept=".json,application/json"></div><div class="actions"><button class="btn secondary" id="validateBackup" disabled>Validate Backup</button><button class="btn" id="restoreBackup" disabled>Restore Backup</button></div><div id="restorePreview" class="notice">Choose a JSON backup file, then press Validate Backup. Validation does not change database data.</div><div class="notice" style="margin-top:10px">Restore is shown here but remains disabled until the secure server-side restore operation is installed and tested. This prevents a partially restored or unsafe financial database.</div>`)}
+function emailPanel(){showPanel("email","Email",`<div class="metric" style="margin-bottom:10px"><span>Last Daily Report Sent</span><strong id="lastDailyReport" style="font-size:15px">Checking…</strong></div><div class="metric" style="margin-bottom:14px"><span>Last Backup Sent</span><strong id="lastBackupEmail" style="font-size:15px">Checking…</strong></div><div class="actions" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px"><button class="btn" id="sendDailyEmail" type="button">Send Daily Report</button><button class="btn secondary" id="sendBackupEmail" type="button">Send Backup</button></div><button class="btn secondary" id="changeCommonPin" type="button" style="width:100%;margin:4px 0 10px">Change Common PIN</button><p class="muted">Each button sends only its own email. Automatic daily emails at 8 PM continue independently.</p><button class="btn secondary" id="refreshEmailStatus" type="button">Refresh Status</button><div id="pinModal" class="mini-modal" aria-hidden="true"><div class="mini-dialog" role="dialog" aria-modal="true" aria-labelledby="pinModalTitle"><h3 id="pinModalTitle">Change Common PIN</h3><form id="changePinForm"><div class="field"><label>Current Common PIN</label><input id="currentCommonPin" type="password" inputmode="numeric" pattern="[0-9]{4,12}" maxlength="12" required autocomplete="current-password"></div><div class="field"><label>New Common PIN</label><input id="newCommonPin" type="password" inputmode="numeric" pattern="[0-9]{4,12}" maxlength="12" required autocomplete="new-password"></div><div class="field"><label>Confirm New Common PIN</label><input id="confirmCommonPin" type="password" inputmode="numeric" pattern="[0-9]{4,12}" maxlength="12" required autocomplete="new-password"></div><div class="actions"><button class="btn" type="submit">Save PIN</button><button class="btn secondary" id="cancelChangePin" type="button">Cancel</button></div></form></div></div>`);const modal=$("pinModal");document.body.appendChild(modal);$("changeCommonPin").addEventListener("click",()=>modal.classList.add("show"));$("cancelChangePin").addEventListener("click",()=>modal.classList.remove("show"));$("changePinForm").addEventListener("submit",async e=>{e.preventDefault();const currentPin=$("currentCommonPin").value.trim(),newPin=$("newCommonPin").value.trim(),confirmPin=$("confirmCommonPin").value.trim();if(!/^\d{4,12}$/.test(currentPin)||!/^\d{4,12}$/.test(newPin)){msg($("panelMsg"),"PINs must contain 4–12 digits.","err");return}if(newPin!==confirmPin){msg($("panelMsg"),"New PIN and confirmation do not match.","err");return}if(currentPin===newPin){msg($("panelMsg"),"New PIN must be different from the current PIN.","err");return}const save=e.target.querySelector('button[type="submit"]');save.disabled=true;save.textContent="Saving…";try{await api({action:"set_common_pin",current_pin:currentPin,pin:newPin});modal.classList.remove("show");e.target.reset();msg($("panelMsg"),"Common PIN changed successfully.","ok")}catch(err){msg($("panelMsg"),err.message,"err")}finally{save.disabled=false;save.textContent="Save PIN"}});refreshEmailStatus()}
+function backupPanel(){showPanel("backup","Backup & Restore",`<h3>Current Student Balances</h3><div class="actions"><button class="btn" id="printBalances" type="button">Print Current Balances</button></div><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3>Complete Website Backup</h3><button class="btn" id="downloadBackup">Download Backup (JSON)</button><p class="muted">Includes student, event, contribution, handover, transaction and settings data. PIN/security credentials are excluded.</p><hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><h3>Validate Backup File</h3><div class="field"><label>Choose backup file from your phone</label><input id="restoreFile" type="file" accept=".json,application/json"></div><div class="actions"><button class="btn secondary" id="validateBackup" disabled>Validate Backup</button><button class="btn danger" id="restoreBackup" disabled aria-disabled="true">Replace with Backup</button></div><div id="restorePreview" class="notice">Choose a JSON backup file, then press Validate Backup. Validation does not change database data.</div><div class="notice" style="margin-top:10px">Restore uses exact REPLACEMENT mode: it replaces students, events, student transactions, event contributions, event handovers and warden transactions with the backup. It replaces only the system_name, currency and currency_symbol settings. Warden/login accounts, Common PIN/security settings and logs are not changed. The secure database restore function must be installed before restoring.</div>`)}
 
 function extractBackupTables(input){if(!input||typeof input!=="object"||Array.isArray(input))throw new Error("The JSON root must be an object.");let candidate=input.tables&&typeof input.tables==="object"?input.tables:(input.data&&typeof input.data==="object"?input.data:input);if(candidate.tables&&typeof candidate.tables==="object")candidate=candidate.tables;return candidate}
-function normalizeBackupPayload(input){const source=extractBackupTables(input);const required=["students","events","student_transactions","event_contributions","event_handovers","warden_transactions","system_settings"];const tables={};for(const key of required){const value=source[key];if(key==="system_settings"&&value&&typeof value==="object"&&!Array.isArray(value)){tables[key]=value;continue}if(!Array.isArray(value))throw new Error("Backup is missing a valid "+key+" section.");tables[key]=value}return {backup_version:input.backup_version||1,exported_at:input.exported_at||input.exportedAt||new Date().toISOString(),tables:tables}}
+function normalizeBackupPayload(input){const source=extractBackupTables(input);const required=["students","events","student_transactions","event_contributions","event_handovers","warden_transactions","system_settings"];const tables={};for(const key of required){const value=source[key];if(key==="system_settings"&&value&&typeof value==="object"&&!Array.isArray(value)){tables[key]=value;continue}if(!Array.isArray(value))throw new Error("Backup is missing a valid "+key+" section.");tables[key]=value}const record_counts=input.record_counts||Object.fromEntries(Object.entries(tables).map(([key,value])=>[key,Array.isArray(value)?value.length:Object.keys(value||{}).length]));return {backup_format:input.backup_format||"MSPS_BACKUP_V2",backup_version:input.backup_version||2,exported_at:input.exported_at||input.exportedAt||new Date().toISOString(),record_counts,tables:tables}}
 function balanceRows(){return students.map(s=>({name:s.name,student_code:s.student_code,class:s.class||"",current_balance:Number(s.current_balance||0)}))}
 async function wardenPanel(){
  showPanel("warden","Warden Utilization & Repayment",`<form id="wardenForm"><div class="field"><label>Transaction type</label><select id="wardenType"><option value="utilization">Utilization</option><option value="repayment">Repayment</option></select></div><div class="row">${field("Amount (₹)","wardenAmount","Amount","number")}<div class="field"><label>Optional note</label><textarea id="wardenDescription" placeholder="Add a note (optional)"></textarea></div></div><div class="field"><label>Common PIN</label><input id="wardenPin" type="password" inputmode="numeric" required></div><button class="btn">Save transaction</button></form><div id="wardenSummary"></div>`);
@@ -329,17 +356,50 @@ document.addEventListener("click",async ev=>{
   if(action.startsWith("handover:")){const id=action.split(":")[1];const amount=prompt("Handover amount (₹):");if(amount===null)return;if(!Number.isFinite(Number(amount))||Number(amount)<=0)throw new Error("Enter a valid positive amount.");const recipient=prompt("Recipient name (optional):")||"";const description=prompt("Description (optional):")||"";const pin=pinPrompt();if(pin===null)return;await api({action:"event_handover",pin,event_id:id,amount:Number(amount),recipient_name:recipient,description});alert("Event handover recorded.");await openPanel("events");return}
  }catch(e){msg($("panelMsg"),e.message,"err")}
 });
-$("panelBody").addEventListener("change",e=>{if(e.target.id==="restoreFile"){const file=e.target.files?.[0];$("validateBackup").disabled=!file;$("restorePreview").textContent=file?`Selected: ${file.name}. Press Validate Backup to check the file.`:"Choose a JSON backup file, then press Validate Backup."}});
+$("panelBody").addEventListener("change",e=>{if(e.target.id==="restoreFile"){pendingRestorePayload=null;$("restoreBackup").disabled=true;$("restoreBackup").setAttribute("aria-disabled","true");const file=e.target.files?.[0];$("validateBackup").disabled=!file;$("restorePreview").textContent=file?`Selected: ${file.name}. Press Validate Backup to check the file.`:"Choose a JSON backup file, then press Validate Backup."}});
 $("loginForm").addEventListener("submit",async e=>{e.preventDefault();const b=$("loginBtn");b.disabled=true;b.textContent="Signing in...";try{const {data,error}=await sb.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});if(error)throw error;await enter(data.user)}catch(x){msg($("loginMsg"),x.message,"err")}finally{b.disabled=false;b.textContent="Sign in"}});
 async function enter(user){$("loginScreen").classList.add("hidden");$("app").classList.remove("hidden");$("who").textContent=user.email||"Warden";try{await loadBase();showDashboardMetrics()}catch(e){alert("Dashboard connection error: "+e.message)}}
 $("logout").onclick=async()=>{await sb.auth.signOut();$("app").classList.add("hidden");$("loginScreen").classList.remove("hidden")};
 $("refresh").onclick=refresh;$("closePanel").onclick=closeTopPanel;
-$("panelBody").addEventListener("input",e=>{if(e.target.id==="studentSearch")renderStudentTable();if(e.target.id==="contributionStudentSearch"){const q=e.target.value.toLowerCase();document.querySelectorAll(".student-choice").forEach(row=>row.style.display=row.textContent.toLowerCase().includes(q)?"flex":"none")}});
+$("panelBody").addEventListener("input",e=>{
+ if(e.target.id==="studentSearch")renderStudentTable();
+ if(e.target.id==="contributionStudentSearch"){
+  const q=e.target.value.trim().toLowerCase();
+  const list=$("contributionStudentList");
+  const rows=list?[...list.querySelectorAll(".student-choice")]:[];
+  let matches=0;
+  rows.forEach(row=>{
+   const match=!!q&&row.textContent.toLowerCase().includes(q);
+   row.style.display=match?"flex":"none";
+   if(match)matches++;
+  });
+  const count=$("contributionStudentCount");
+  if(count){
+   const selected=rows.filter(row=>row.querySelector('input[type="checkbox"]')?.checked).length;
+   count.textContent=!q
+    ?"No students displayed. Search by name or student ID to find students."
+    :(matches?`${matches} matching student(s) shown · ${selected} selected`:"No matching students found.");
+  }
+ }
+});
+$("panelBody").addEventListener("change",e=>{
+ if(e.target.matches('#contributionStudentList input[type="checkbox"]')){
+  const list=$("contributionStudentList");
+  const rows=list?[...list.querySelectorAll(".student-choice")]:[];
+  const selected=rows.filter(row=>row.querySelector('input[type="checkbox"]')?.checked).length;
+  const count=$("contributionStudentCount");
+  if(count){
+   const q=$("contributionStudentSearch")?.value.trim();
+   const matches=rows.filter(row=>row.style.display==="flex").length;
+   count.textContent=q?`${matches} matching student(s) shown · ${selected} selected`:`${selected} selected. Search to display student names.`;
+  }
+ }
+});
 $("panelBody").addEventListener("submit",async e=>{
  e.preventDefault();try{
   if(e.target.id==="studentTxnForm"){const amount=Number($("txnAmount").value);if(!Number.isFinite(amount)||amount<=0)throw new Error("Enter a valid positive amount.");await api({action:"student_transaction",pin:$("txnPin").value,student_id:$("txnStudentId").value,transaction_type:$("txnType").value,amount,description:$("txnDescription").value.trim()});await loadBase();studentsPanel();msg($("panelMsg"),"Financial transaction saved successfully.");}
   if(e.target.id==="editStudentForm"){await api({action:"update_student",student_id:$("editStudentId").value,name:$("editStudentName").value.trim(),class:$("editStudentClass").value.trim(),student_code:$("editStudentCode").value.trim()});await loadBase();studentsPanel();msg($("panelMsg"),"Student details updated successfully.");}
-  if(e.target.id==="studentForm"){await api({action:"add_student",student_code:$("studentCode").value.trim(),name:$("studentName").value.trim(),class:$("studentClass").value.trim()});await loadBase();studentsPanel();msg($("panelMsg"),"Student saved successfully.");}
+
   if(e.target.id==="eventForm"){await api({action:"add_event",event_name:$("eventName").value.trim(),description:$("eventDesc").value.trim()});await loadBase();showPanel("addEvent","Add Event","<div class=notice>Event created successfully.</div>");}
   if(e.target.id==="manualForm"){const pin=$("contributionPin").value;await api({action:"manual_event_contribution",pin,event_id:$("eventSelect").value,contributor_name:$("contributorName").value.trim(),amount:Number($("contributionAmount").value)});await loadBase();contributionPanel();msg($("panelMsg"),"Manual contribution saved successfully.");}
   if(e.target.id==="registeredContributionForm"){const student_ids=[...$("contributionStudentList").querySelectorAll('input[type="checkbox"]:checked')].map(x=>x.value);if(!student_ids.length)throw new Error("Select at least one registered student.");const amount=Number($("registeredContributionAmount").value);if(!Number.isFinite(amount)||amount<=0)throw new Error("Enter a valid positive contribution amount.");await api({action:"registered_event_contribution",event_id:$("registeredEventSelect").value,student_ids,amount,pin:$("registeredContributionPin").value,description:$("registeredContributionDescription").value.trim()});await loadBase();await contributionPanel();msg($("panelMsg"),`Contribution recorded for ${student_ids.length} student(s).`);}
@@ -360,12 +420,10 @@ $("panelBody").addEventListener("click",async e=>{
   finally{button.disabled=false;button.textContent=original}
   return;
  }
- if(e.target.id==="toggleAddStudent"){const f=$("studentForm");f.classList.toggle("hidden");e.target.textContent=f.classList.contains("hidden")?"＋ Add Student":"Hide Add Student";return}
- if(e.target.id==="cancelAddStudent"){ $("studentForm").classList.add("hidden");return }
  if(e.target.id==="cancelTxn"||e.target.id==="cancelEdit"){studentsPanel();return}
  if(e.target.id==="loadHistory"){try{await loadHistory(activePanel)}catch(x){msg($("panelMsg"),x.message,"err")}}
  if(e.target.id==="generateDaily"){try{const d=await reports({action:"daily_report",date:$("emailDate").value});$("dailyPreview").textContent=JSON.stringify(d,null,2)}catch(x){msg($("panelMsg"),x.message,"err")}}
- if(e.target.id==="validateBackup"){const file=$("restoreFile").files?.[0];const box=$("restorePreview");if(!file){box.textContent="Choose a JSON backup file first.";return}try{const raw=await file.text();const parsed=JSON.parse(raw);normalizeBackupPayload(parsed);box.textContent="Backup validation successful. All seven required MSPS data sections are present and correctly structured. This check does not change database data. Secure server-side restore is not installed yet.";box.style.background="#ecfdf3";box.style.color="#067647";$("restoreBackup").disabled=true}catch(err){box.textContent="Backup validation failed: "+err.message;box.style.background="#fef3f2";box.style.color="#b42318"}}
+ if(e.target.id==="validateBackup"){const file=$("restoreFile").files?.[0];const box=$("restorePreview");if(!file){box.textContent="Choose a backup file first.";return}try{const raw=await file.text();const parsed=JSON.parse(raw);pendingRestorePayload=normalizeBackupPayload(parsed);box.textContent="Backup validation successful. Seven data sections are present. REPLACEMENT mode will replace the six data tables and the three approved system settings with the backup.";box.style.background="#ecfdf3";box.style.color="#067647";$("restoreBackup").disabled=false;$("restoreBackup").removeAttribute("aria-disabled")}catch(err){pendingRestorePayload=null;$("restoreBackup").disabled=true;box.textContent="Backup validation failed: "+err.message;box.style.background="#fef2f2";box.style.color="#b42318"}}
  if(e.target.id==="downloadBackup"){
     const button=e.target;
     const originalText=button.textContent;
@@ -376,6 +434,13 @@ $("panelBody").addEventListener("click",async e=>{
       const compatibleBackup=normalizeBackupPayload(d);
       const json=JSON.stringify(compatibleBackup,null,2);
       const filename="MSPS_Backup_"+today()+".json";
+      if(window.AMUAndroidPrint&&typeof window.AMUAndroidPrint.saveBackup==="function"){
+        const bytes=new TextEncoder().encode(json);let binary="";for(let i=0;i<bytes.length;i+=0x8000)binary+=String.fromCharCode(...bytes.subarray(i,i+0x8000));
+        window.__mspsBackupSaved=(ok)=>{msg($("panelMsg"),ok?"Backup saved to your phone's Downloads folder as "+filename:"Android could not save the backup. Please open the website in Chrome and download it there.",ok?"ok":"err");delete window.__mspsBackupSaved};
+        window.AMUAndroidPrint.saveBackup(btoa(binary),filename);
+        msg($("panelMsg"),"Saving backup to your phone…","ok");
+        return;
+      }
       // Data URLs avoid URL.createObjectURL(), unavailable in some Android
       // in-app browsers and embedded web views.
       let downloadUrl="data:application/json;charset=utf-8,"+encodeURIComponent(json);
@@ -396,7 +461,37 @@ $("panelBody").addEventListener("click",async e=>{
     }
   }
  if(e.target.id==="printBalances"){const rows=balanceRows();const html=`<table><thead><tr><th>Student</th><th>Student ID</th><th>Class</th><th>Current Balance</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.student_code)}</td><td>${esc(r.class)}</td><td>${money(r.current_balance)}</td></tr>`).join("")}</tbody></table><p>Total students: ${rows.length}</p>`;printReport("MSPS MANAGEMENT — Current Student Balances",html);return}
- if(e.target.id==="restoreBackup"){msg($("panelMsg"),"Restore is not enabled. The secure database restore service must be installed and tested first; no database data has been changed.","err");return}
+ if(e.target.id==="restoreBackup"){
+  if(!pendingRestorePayload){msg($("panelMsg"),"Choose and validate a backup file first.","err");return}
+  const ok=confirm("WARNING: EXACT REPLACEMENT RESTORE\\n\\nThis will DELETE and replace all existing records in students, events, student_transactions, event_contributions, event_handovers and warden_transactions with the records in this backup. It will replace only system_name, currency and currency_symbol in system_settings.\\n\\nWarden/login accounts, Common PIN/security settings and logs will NOT be changed.\\n\\nThe database operation is atomic: if any validation or insert fails, the database transaction will roll back.\\n\\nContinue with exact replacement?");
+  if(!ok)return;
+  const b=e.target;
+  b.disabled=true;
+  const old=b.textContent;
+  b.textContent="Replacing data...";
+  try{
+    const result=await reports({action:"restore_import",tables:pendingRestorePayload.tables});
+    if(result===null||result===undefined||result?.success===false){
+      throw new Error(result?.error||"The server did not confirm the restore.");
+    }
+    const counts=result.restored||result.record_counts||result.counts||result;
+    msg($("panelMsg"),"Exact replacement restore completed. Restored counts: "+JSON.stringify(counts),"ok");
+    pendingRestorePayload=null;
+    const fileInput=$("restoreFile");
+    if(fileInput)fileInput.value="";
+    await loadBase();
+    showDashboardMetrics();
+    const preview=$("restorePreview");
+    if(preview)preview.textContent="Exact replacement completed successfully. The database now contains the backup records. You can close this panel.";
+  }catch(err){
+    msg($("panelMsg"),"Restore failed: "+(err?.message||String(err)),"err");
+    const preview=$("restorePreview");
+    if(preview)preview.textContent="Restore failed. The database transaction should have rolled back. Correct the reported issue before trying again.";
+  }finally{
+    b.textContent=old;
+    b.disabled=!pendingRestorePayload;
+  }
+}
 
 });
 // Installable Android PWA shell. Only static app files are cached; API and financial data are never cached.

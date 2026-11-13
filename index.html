@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#10243a"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="application-name" content="MSP"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="amu-icon.svg" type="image/svg+xml">
-<title>MSPS MANAGEMENT</title>
+<title>MSPS</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--navy:#10243a;--blue:#1769aa;--bg:#f3f6fa;--card:#fff;--line:#dce3eb;--muted:#667085;--green:#067647;--red:#b42318}
@@ -130,7 +130,7 @@ input,select,textarea{font-size:16px;min-height:44px}
 <body>
 <section id="loginScreen">
  <div class="login-card">
-  <div class="logo">M</div><h1>MSPS MANAGEMENT</h1><p>Secure warden sign in</p>
+  <div class="logo">M</div><h1>MSPS</h1><p>Secure warden sign in</p>
   <form id="loginForm">
    <div class="field"><label>Warden email</label><input id="email" type="email" required autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Email address"></div>
    <div class="field"><label>Password</label><input id="password" type="password" required autocomplete="current-password" placeholder="Password"></div>
@@ -139,7 +139,7 @@ input,select,textarea{font-size:16px;min-height:44px}
  </div>
 </section>
 <div id="app" class="hidden">
-<header><div><div class="brand">MSPS MANAGEMENT</div><div class="subbrand">WARDEN CONTROL PANEL</div></div><div class="header-right"><div id="who" class="who"></div><button class="logout" id="logout">Sign out</button></div></header>
+<header><div><div class="brand">MSPS</div><div class="subbrand">WARDEN CONTROL PANEL</div></div><div class="header-right"><div id="who" class="who"></div><button class="logout" id="logout">Sign out</button></div></header>
 <main>
  <div class="welcome"><div><h1>Dashboard</h1><p>Manage students, events and hostel funds.</p></div><button class="btn secondary" id="refresh">↻ Refresh</button></div>
  <div class="section-title">Main dashboard</div>
@@ -216,7 +216,7 @@ function downloadCurrentBalances(){
 
 function printReport(title,content){
  let root=$("printRoot");if(!root){root=document.createElement("section");root.id="printRoot";document.body.appendChild(root)}
- root.innerHTML=`<h1>${esc(title)}</h1><div class="print-meta">MSPS MANAGEMENT · Generated ${new Date().toLocaleString("en-IN",{timeZone:"Asia/Kolkata"})} (IST)</div>${content}`;
+ root.innerHTML=`<h1>${esc(title)}</h1><div class="print-meta">MSPS · Generated ${new Date().toLocaleString("en-IN",{timeZone:"Asia/Kolkata"})} (IST)</div>${content}`;
  // Keep the prepared report in the DOM until the next print. Android's native
  // PrintManager captures the WebView asynchronously after this call.
  setTimeout(()=>{try{if(window.AMUAndroidPrint&&typeof window.AMUAndroidPrint.print==="function"){window.AMUAndroidPrint.print()}else{window.print()}}catch(e){msg($("panelMsg"),"Printing is not available here. Open the website in Chrome and choose Print.","err")}},180);
@@ -408,8 +408,8 @@ $("panelBody").addEventListener("submit",async e=>{
  }catch(x){msg($("panelMsg"),x.message,"err")}
 });
 $("panelBody").addEventListener("click",async e=>{
- if(e.target.id==="printFundHistory"){printCurrentReport("MSPS MANAGEMENT — Total Balance and Complete Transactions","fundReportPrintable");return}
- if(e.target.id==="printStudentStatement"){printCurrentReport("MSPS MANAGEMENT — Student Statement — "+$("panelTitle").textContent.replace(/^Statement:\s*/,""),"studentStatementPrintable");return}
+ if(e.target.id==="printFundHistory"){printCurrentReport("MSPS — Total Balance and Complete Transactions","fundReportPrintable");return}
+ if(e.target.id==="printStudentStatement"){printCurrentReport("MSPS — Student Statement — "+$("panelTitle").textContent.replace(/^Statement:\s*/,""),"studentStatementPrintable");return}
  if(e.target.id==="printHistory"){const date=$("historyDate")?.value||today();printCurrentReport((activePanel==="deposits"?"Deposit":activePanel==="withdrawals"?"Withdrawal":"Borrowing")+" report — "+date,"historyResult");return}
  if(e.target.id==="printEventReport"){printCurrentReport("Event report — "+$("panelTitle").textContent,"eventReportPrintable");return}
  if(e.target.id==="refreshEmailStatus"){await refreshEmailStatus();return}
@@ -460,7 +460,7 @@ $("panelBody").addEventListener("click",async e=>{
       button.textContent=originalText;
     }
   }
- if(e.target.id==="printBalances"){const rows=balanceRows();const html=`<table><thead><tr><th>Student</th><th>Student ID</th><th>Class</th><th>Current Balance</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.student_code)}</td><td>${esc(r.class)}</td><td>${money(r.current_balance)}</td></tr>`).join("")}</tbody></table><p>Total students: ${rows.length}</p>`;printReport("MSPS MANAGEMENT — Current Student Balances",html);return}
+ if(e.target.id==="printBalances"){const rows=balanceRows();const html=`<table><thead><tr><th>Student</th><th>Student ID</th><th>Class</th><th>Current Balance</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.student_code)}</td><td>${esc(r.class)}</td><td>${money(r.current_balance)}</td></tr>`).join("")}</tbody></table><p>Total students: ${rows.length}</p>`;printReport("MSPS — Current Student Balances",html);return}
  if(e.target.id==="restoreBackup"){
   if(!pendingRestorePayload){msg($("panelMsg"),"Choose and validate a backup file first.","err");return}
   const ok=confirm("WARNING: EXACT REPLACEMENT RESTORE\\n\\nThis will DELETE and replace all existing records in students, events, student_transactions, event_contributions, event_handovers and warden_transactions with the records in this backup. It will replace only system_name, currency and currency_symbol in system_settings.\\n\\nWarden/login accounts, Common PIN/security settings and logs will NOT be changed.\\n\\nThe database operation is atomic: if any validation or insert fails, the database transaction will roll back.\\n\\nContinue with exact replacement?");
